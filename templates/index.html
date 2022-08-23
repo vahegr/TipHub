@@ -1,3 +1,4 @@
+{% load static %}
 <html lang="en">
 
 <head>
@@ -6,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="assets/components/bootstrap/bootstrap-rtl.min.css">
-    <link rel="stylesheet" href="assets/components/owl-carousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{% static 'components/bootstrap/bootstrap-rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'components/owl-carousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title> مجله</title>
 </head>
 
@@ -24,7 +25,7 @@
 
                 <div class="d-flex flex-column flex-md-row align-items-center pr-md-4">
                     <div class="logo d-flex justify-content-center align-items-center ml-3">
-                        <a href="index.html"><img src="assets/image/logo.png" class="logo-img img-fluid" alt="" /></a>
+                        <a href="index.html"><img src="{% static 'image/logo.png' %}" class="logo-img img-fluid" alt="" /></a>
                     </div>
                     <div class="nav-search-btn">
                         <input type="search" placeholder="جستجو">
@@ -36,7 +37,7 @@
                     <div class="dropdown notification-box">
                         <div class="position-relative d-none d-md-block " type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="assets/image/notification.png" class="notification-img" alt="">
+                            <img src="{% static 'image/notification.png' %}" class="notification-img" alt="">
                             <div class="badge">2</div>
                         </div>
                         <div class="dropdown-menu notification-menu-items custom-bg"
@@ -52,7 +53,7 @@
                         <div class="notification-box dropdown">
                             <a href="" class="btn login-btn" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="assets/image/sutdent-prof.png" alt="">
+                                <img src="{% static 'image/sutdent-prof.png' %}" alt="">
                             </a>
                             <div class="dropdown-menu account-menu-items custom-bg"
                                 aria-labelledby="dropdownMenuButton">
@@ -136,14 +137,14 @@
                     <div class="bar3"></div>
                 </div>
                 <div class="logo">
-                    <a href="index.html"><img src="assets/image/logo.png" class="logo-img img-fluid" alt="" /></a>
+                    <a href="index.html"><img src="{% static 'image/logo.png' %}" class="logo-img img-fluid" alt="" /></a>
                 </div>
 
                 <div class="d-flex align-items-center">
                     <div class="dropdown notification-box">
                         <div class="position-relative d-block d-md-none " type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="assets/image/notification.png" class="notification-img" alt="">
+                            <img src="{% static 'image/notification.png' %}" class="notification-img" alt="">
                             <div class="badge">2</div>
                         </div>
                         <div class="dropdown-menu notification-menu-items custom-bg"
@@ -159,7 +160,7 @@
                         <div class="notification-box dropdown">
                             <a href="" class="btn login-btn" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="assets/image/sutdent-prof.png" alt="">
+                                <img src="{% static 'image/sutdent-prof.png' %}" alt="">
                             </a>
                             <div class="dropdown-menu account-menu-items custom-bg"
                                 aria-labelledby="dropdownMenuButton">
@@ -242,7 +243,7 @@
                         <div class="custom-bg">
                             <div class="video-card">
                                 <a href="video-detail.html" class="position-relative d-block ">
-                                    <img src="assets/image/p1.jpg" alt="" class="img-fluid w-100 h-100">
+                                    <img src="{% static 'image/p1.jpg' %}" alt="" class="img-fluid w-100 h-100">
                                     <div class="video-play-btn">
                                         <i class="fa fa-play"></i>
                                     </div>
@@ -285,7 +286,7 @@
                         <div class="custom-bg">
                             <div class="video-card">
                                 <a href="video-detail.html" class="position-relative d-block ">
-                                    <img src="assets/image/p2.jpg" alt="" class="img-fluid w-100 h-100">
+                                    <img src="{% static 'image/p2.jpg' %}" alt="" class="img-fluid w-100 h-100">
                                     <div class="video-play-btn">
                                         <i class="fa fa-play"></i>
                                     </div>
@@ -328,7 +329,7 @@
                         <div class="custom-bg">
                             <div class="video-card">
                                 <a href="video-detail.html" class="position-relative d-block ">
-                                    <img src="assets/image/p3.png" alt="" class="img-fluid w-100 h-100">
+                                    <img src="{% static 'image/p3.png' %}" alt="" class="img-fluid w-100 h-100">
                                     <div class="video-play-btn">
                                         <i class="fa fa-play"></i>
                                     </div>
@@ -371,7 +372,7 @@
                         <div class="custom-bg">
                             <div class="video-card">
                                 <a href="video-detail.html" class="position-relative d-block ">
-                                    <img src="assets/image/p4.png" alt="" class="img-fluid w-100 h-100">
+                                    <img src="{% static 'image/p4.png' %}" alt="" class="img-fluid w-100 h-100">
                                     <div class="video-play-btn">
                                         <i class="fa fa-play"></i>
                                     </div>
@@ -414,7 +415,7 @@
                         <div class="custom-bg">
                             <div class="video-card">
                                 <a href="video-detail.html" class="position-relative d-block ">
-                                    <img src="assets/image/p5.png" alt="" class="img-fluid w-100 h-100">
+                                    <img src="{% static 'image/p5.png' %}" alt="" class="img-fluid w-100 h-100">
                                     <div class="video-play-btn">
                                         <i class="fa fa-play"></i>
                                     </div>
@@ -460,7 +461,7 @@
         <section class="py-5">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h2 class="title-section">تازه ترین ویدیوها </h2>
+                    <h2 class="title-section">پربازدید ترین ویدیوها </h2>
                     <a href="all-videos.html" class="btn custom-btn">
                         نمایش همه
                     </a>
@@ -471,7 +472,7 @@
                         <div class="custom-bg">
                             <div class="video-card">
                                 <a href="video-detail.html" class="position-relative d-block ">
-                                    <img src="assets/image/p1.jpg" alt="" class="img-fluid w-100 h-100">
+                                    <img src="{% static 'image/p1.jpg' %}" alt="" class="img-fluid w-100 h-100">
                                     <div class="video-play-btn">
                                         <i class="fa fa-play"></i>
                                     </div>
@@ -514,7 +515,7 @@
                         <div class="custom-bg">
                             <div class="video-card">
                                 <a href="video-detail.html" class="position-relative d-block ">
-                                    <img src="assets/image/p2.jpg" alt="" class="img-fluid w-100 h-100">
+                                    <img src="{% static 'image/p2.jpg' %}" alt="" class="img-fluid w-100 h-100">
                                     <div class="video-play-btn">
                                         <i class="fa fa-play"></i>
                                     </div>
@@ -557,7 +558,7 @@
                         <div class="custom-bg">
                             <div class="video-card">
                                 <a href="video-detail.html" class="position-relative d-block ">
-                                    <img src="assets/image/p3.png" alt="" class="img-fluid w-100 h-100">
+                                    <img src="{% static 'image/p3.png' %}" alt="" class="img-fluid w-100 h-100">
                                     <div class="video-play-btn">
                                         <i class="fa fa-play"></i>
                                     </div>
@@ -600,7 +601,7 @@
                         <div class="custom-bg">
                             <div class="video-card">
                                 <a href="video-detail.html" class="position-relative d-block ">
-                                    <img src="assets/image/p4.png" alt="" class="img-fluid w-100 h-100">
+                                    <img src="{% static 'image/p4.png' %}" alt="" class="img-fluid w-100 h-100">
                                     <div class="video-play-btn">
                                         <i class="fa fa-play"></i>
                                     </div>
@@ -643,7 +644,7 @@
                         <div class="custom-bg">
                             <div class="video-card">
                                 <a href="video-detail.html" class="position-relative d-block ">
-                                    <img src="assets/image/p5.png" alt="" class="img-fluid w-100 h-100">
+                                    <img src="{% static 'image/p5.png' %}" alt="" class="img-fluid w-100 h-100">
                                     <div class="video-play-btn">
                                         <i class="fa fa-play"></i>
                                     </div>
@@ -751,19 +752,19 @@
                     <div>
                         <h6 class="mb-3 text-white"><span class="border-bottom">خدمات مشترکین</span></h6>
                         <a href="" class="">
-                            <img src="assets/image/f1.svg" alt="">
+                            <img src="{% static 'image/f1.svg' %}" alt="">
                             اهواز، خیابان نادری، خیابان امیری، کوچه مهرگان، پلاک ۱۴، کد پستی 6381838168
                         </a>
                         <a href="" class="">
-                            <img src="assets/image/f2.svg" alt="">
+                            <img src="{% static 'image/f2.svg' %}" alt="">
                             پشتیبانی: 09910549803
                         </a>
                         <a href="" class="">
-                            <img src="assets/image/f3.svg" alt="">
+                            <img src="{% static 'image/f3.svg' %}" alt="">
                             30009010
                         </a>
                         <a href="" class="">
-                            <img src="assets/image/f4.svg" alt="">
+                            <img src="{% static 'image/f4.svg' %}" alt="">
                             amirhamiri74@gmial.com
                         </a>
 
@@ -786,13 +787,13 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-    <script src="assets/components/bootstrap/bootstrap.bundle.js"></script>
+    <script src="{% static 'components/bootstrap/bootstrap.bundle.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
         crossorigin="anonymous"></script>
 
-    <script src="assets/components/owl-carousel/owl.carousel.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="{% static 'components/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 
 </body>
 
