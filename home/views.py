@@ -3,4 +3,4 @@ from django.views.generic import ListView, TemplateView, DetailView
 
 
 class HomePage(TemplateView):
-    template_name = 'index.html'
+    template_name = 'home/index.html'
