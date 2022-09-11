@@ -2,27 +2,27 @@ from django.contrib.auth.models import BaseUserManager
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, phone, password=None):
+    def create_user(self, email, password=None):
         """
         Creates and saves a User with the given email and password.
         """
-        if not phone:
-            raise ValueError('Users must have an phone number')
+        if not email:
+            raise ValueError('لطفا ایمیل خود را وارد کنید!')
 
         user = self.model(
-            phone=phone,
+            email=email,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, phone, password=None):
+    def create_superuser(self, email, password=None):
         """
         Creates and saves a superuser with the given email and password.
         """
         user = self.create_user(
-            phone,
+            email,
             password=password,
         )
         user.is_admin = True

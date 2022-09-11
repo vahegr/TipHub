@@ -5,20 +5,20 @@ from django.contrib.auth.models import AbstractBaseUser
 
 class User(AbstractBaseUser):
     email = models.EmailField(
-        verbose_name='email address',
+        verbose_name='آدرس ایمیل',
         max_length=255,
         null=True,
         blank=True,
         unique=True,
     )
-    full_name = models.CharField(max_length=100)
-    phone = models.CharField(max_length=12, unique=True)
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    full_name = models.CharField(max_length=100, verbose_name='نام و نام خانوادگی')
+    phone = models.CharField(max_length=12, unique=True, verbose_name='شماره مبایل')
+    is_active = models.BooleanField(default=True, verbose_name='فعالیت')
+    is_admin = models.BooleanField(default=False, verbose_name='ادمین')
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'phone'
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     def __str__(self):
@@ -39,4 +39,4 @@ class User(AbstractBaseUser):
         " Is the user a member of staff? "
         # Simplest possible answer: All admins are staff
         return self.is_admin
-
+    
