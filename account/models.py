@@ -7,8 +7,6 @@ class User(AbstractBaseUser):
     email = models.EmailField(
         verbose_name='آدرس ایمیل',
         max_length=255,
-        null=True,
-        blank=True,
         unique=True,
     )
     full_name = models.CharField(max_length=100, verbose_name='نام و نام خانوادگی')
