@@ -21,6 +21,11 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
+
+    class Meta:
+        verbose_name = 'کاربر'
+        verbose_name_plural = 'کاربر ها'
+
     def __str__(self):
         return self.phone
 
@@ -39,4 +44,3 @@ class User(AbstractBaseUser):
         " Is the user a member of staff? "
         # Simplest possible answer: All admins are staff
         return self.is_admin
-    
