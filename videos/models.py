@@ -45,7 +45,7 @@ class Category(models.Model):                                           # catego
 
 
 class Video(models.Model):
-    creator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='')
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='تولید کننده ')
     category = models.ManyToManyField(Category, verbose_name='دسته بندی')
     title = models.CharField(max_length=100, verbose_name='عنوان')
     description = models.TextField(max_length=600, verbose_name='شرح')
