@@ -33,6 +33,12 @@ INSTALLED_APPS = [
     'about',
     'account',
     'videos',
+
+    # installed packages
+
+    'django_jalali',
+    'django_extensions',
+    'extensions',
 ]
 
 MIDDLEWARE = [
@@ -43,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'videos.middleware.SaveIpAddressMiddleware',
 ]
 
 ROOT_URLCONF = 'tipHub.urls'
