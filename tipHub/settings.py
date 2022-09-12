@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     'django_jalali',
     'django_extensions',
+    'django_cleanup.apps.CleanupConfig',
     'extensions',
 ]
 
