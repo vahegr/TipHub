@@ -7,6 +7,7 @@ from extensions.utils import jalali_converter
 from account.models import User
 from django_extensions.db.fields import AutoSlugField
 from django.utils.text import slugify
+from django.urls import reverse
 
 
 def slugify_function(content): return slugify(content, allow_unicode=True)
@@ -77,6 +78,9 @@ class Video(models.Model):                                                  # vi
                                   related_name="hits",
                                   verbose_name='بازدید'
                                   )
+
+    def get_absolute_url(self):
+        return reverse('videos:video detail', args=[self.id, self.slug])
 
     class Meta:
         verbose_name = 'ویدیو'

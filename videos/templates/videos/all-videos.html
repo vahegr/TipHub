@@ -23,7 +23,7 @@
                         <div class="col-md-6 col-lg-4 my-2">
                         <div class="custom-bg">
                             <div class="video-card">
-                                <a href="video-detail.html" class="position-relative d-block ">
+                                <a href="{{ item.get_absolute_url }}" class="position-relative d-block ">
                                     <img src="{{ item.cover_image.url }}" alt="{{ item.title }}" class="img-fluid w-100 h-100">
                                     <div class="video-play-btn">
                                         <i class="fa fa-play"></i>
@@ -50,7 +50,7 @@
                                 </a>
 
                             </div>
-                            <a href="video-detail.html">
+                            <a href="{{ item.get_absolute_url }}">
                                 <h5 class="video-card-title m-2">
                                 {{ item.description }}
                                 </h5>
