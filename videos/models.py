@@ -12,11 +12,15 @@ from django.utils.text import slugify
 def slugify_function(content): return slugify(content, allow_unicode=True)
 
 
-class IpAddress(models.Model):
-    ip_address = models.GenericIPAddressField()
+class IpAddress(models.Model):                                          # users ip address
+    ip_address = models.GenericIPAddressField(verbose_name='آدرس آی پی')
+
+    class Meta:
+        verbose_name = 'آدرس آی پی'
+        verbose_name_plural = 'آدرس آی پی ها'
 
 
-class Category(models.Model):                                           # category of blogs
+class Category(models.Model):                                           # category of videos
     parent = models.ForeignKey(
         'self',
         default=None,
@@ -44,7 +48,7 @@ class Category(models.Model):                                           # catego
         return self.title
 
 
-class Video(models.Model):
+class Video(models.Model):                                                  # videos model
     creator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='تولید کننده ')
     category = models.ManyToManyField(Category, verbose_name='دسته بندی')
     title = models.CharField(max_length=100, verbose_name='عنوان')
@@ -84,3 +88,15 @@ class Video(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.description[:30]} ... "
+
+
+class Like(models.Model):                                                       # likes model
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='likes', verbose_name='کاربر')
+    video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='likes', verbose_name='ویدیو')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='زمان تولید')
+
+    def __str__(self):
+        return f"{self.user.full_name} - {self.video.title} "
+
+    class Meta:
+        ordering = ('-created_at',)
