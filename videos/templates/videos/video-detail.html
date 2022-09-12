@@ -93,7 +93,7 @@
                                 <div class="comment my-3 p-2">
                                     <div class=" d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center justify-content-center">
-                                            <img src="assets/image/sutdent-prof.png" alt="student" class="user-profile">
+                                            <img src="{% static 'image/sutdent-prof.png' %}" alt="student" class="user-profile">
                                             <p class="user-name pr-2">امیرحسین امیری</p>
                                         </div>
 
@@ -111,70 +111,12 @@
                                     </div>
                                 </div>
                                 <!-- end comment -->
-                                <div class="comment my-3 p-2">
-                                    <div class=" d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="assets/image/sutdent-prof.png" alt="student" class="user-profile">
-                                            <p class="user-name pr-2">امیرحسین امیری</p>
-                                        </div>
 
-                                        <p class="comment-date-time"> چهار روز پیش</p>
-                                    </div>
-                                    <p class="px-4 py-2 comment-text text-justify"> لورم ایپسوم متن ساختگی
-                                        با تولید سادگی نامفهوم
-                                        از صنعت چاپ،
-                                        و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه
-                                        روزنامه و مجله در ستون و سطرآنچنان که لازم است،</p>
-
-                                    <div class="d-flex align-items-center justify-content-end reply" type='button'>
-                                        <i class="fa fa-reply"></i>
-                                        <p>پاسخ به این نظر</p>
-                                    </div>
-                                </div>
-                                <!-- end comment -->
-                                <div class="comment my-3 p-2">
-                                    <div class=" d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="assets/image/sutdent-prof.png" alt="student" class="user-profile">
-                                            <p class="user-name pr-2">امیرحسین امیری</p>
-                                        </div>
-
-                                        <p class="comment-date-time"> چهار روز پیش</p>
-                                    </div>
-                                    <p class="px-4 py-2 comment-text text-justify"> لورم ایپسوم متن ساختگی
-                                        با تولید سادگی نامفهوم
-                                        از صنعت چاپ،
-                                        و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه
-                                        روزنامه و مجله در ستون و سطرآنچنان که لازم است،</p>
-
-                                    <div class="d-flex align-items-center justify-content-end reply" type='button'>
-                                        <i class="fa fa-reply"></i>
-                                        <p>پاسخ به این نظر</p>
-                                    </div>
-                                </div>
                                 <!-- end comment child -->
                                 <div class="comment my-3 p-2 comment-child">
                                     <div class=" d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center justify-content-center">
-                                            <img src="assets/image/sutdent-prof.png" alt="student" class="user-profile">
-                                            <p class="user-name pr-2"> امیرحسین امیری</p>
-                                        </div>
-
-                                        <p class="comment-date-time"> چهار روز پیش</p>
-                                    </div>
-                                    <p class="px-4 py-2 comment-text text-justify"> لورم ایپسوم متن ساختگی
-                                        با تولید سادگی نامفهوم
-                                        از صنعت چاپ،
-                                        و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه
-                                        روزنامه و مجله در ستون و سطرآنچنان که لازم است،</p>
-
-                                </div>
-                                <!-- end comment -->
-                                <!-- end comment child -->
-                                <div class="comment my-3 p-2 comment-child">
-                                    <div class=" d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="assets/image/sutdent-prof.png" alt="student" class="user-profile">
+                                            <img src="{% static 'image/sutdent-prof.png' %}" alt="student" class="user-profile">
                                             <p class="user-name pr-2">امیرحسین امیری</p>
                                         </div>
 
@@ -204,8 +146,8 @@
                                 <h4>درباره استاد</h4>
                             </div>
                             <div class="d-flex align-items-center py-3">
-                                <img src="assets/image/sutdent-prof.png" alt="student" class="teacher-profile">
-                                <p class="user-name pr-2">امیرحسین امیری </p>
+                                <img src="{% static 'image/sutdent-prof.png' %}" alt="student" class="teacher-profile">
+                                <p class="user-name pr-2">{{ object.creator.full_name }} </p>
                             </div>
                             <p class="color78 teacher-description py-3">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
                                 است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
