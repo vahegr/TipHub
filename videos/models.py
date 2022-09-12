@@ -23,10 +23,22 @@ class Category(models.Model):                                           # catego
         null=True,
         blank=True,
         on_delete=models.CASCADE,
-        related_name='children'
+        related_name='children',
+        verbose_name='زیر دسته'
     )
-    title = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=100, verbose_name='عنوان')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='زمان تولید')
+    slug = AutoSlugField(populate_from=['title'],
+                         unique=True,
+                         allow_unicode=True,
+                         slugify_function=slugify_function,
+                         blank=True,
+                         verbose_name='اسلاگ'
+                         )
+
+    class Meta:
+        verbose_name = 'دسته بندی'
+        verbose_name_plural = 'دسته بندی ها'
 
     def __str__(self):
         return self.title
@@ -37,9 +49,9 @@ class Video(models.Model):
     category = models.ManyToManyField(Category, verbose_name='دسته بندی')
     title = models.CharField(max_length=100, verbose_name='عنوان')
     description = models.TextField(max_length=600, verbose_name='شرح')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='زمان تولید')
-    jalali_created = jmodels.jDateField(auto_now_add=True, verbose_name='زمان تولید فارسی')
-    jalali_updated = jmodels.jDateField(auto_now=True, verbose_name='به روز شده ')
+    created_at = models.DateTimeField(auto_now_add=True, null=True, verbose_name='زمان تولید')
+    jalali_created = jmodels.jDateField(auto_now_add=True, null=True, verbose_name='زمان تولید فارسی')
+    jalali_updated = jmodels.jDateField(auto_now=True, null=True, verbose_name='به روز شده ')
 
     cover_image = models.ImageField(upload_to='images/video-images',
                                     null=True,
@@ -53,7 +65,7 @@ class Video(models.Model):
                          allow_unicode=True,
                          slugify_function=slugify_function,
                          blank=True,
-                         verbose_name='آدرس'
+                         verbose_name='اسلاگ'
                          )
 
     hits = models.ManyToManyField(IpAddress,

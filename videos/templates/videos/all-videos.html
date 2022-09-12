@@ -19,21 +19,22 @@
                 </div>
                 <div class="row">
                     <!-- item -->
-                    <div class="col-md-6 col-lg-4 my-2">
+                    {% for item in object_list %}
+                        <div class="col-md-6 col-lg-4 my-2">
                         <div class="custom-bg">
                             <div class="video-card">
                                 <a href="video-detail.html" class="position-relative d-block ">
-                                    <img src="{% static 'image/p1.jpg' %}" alt="" class="img-fluid w-100 h-100">
+                                    <img src="{{ item.cover_image.url }}" alt="{{ item.title }}" class="img-fluid w-100 h-100">
                                     <div class="video-play-btn">
                                         <i class="fa fa-play"></i>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between video-category-time">
-                                        <h6 class="">موفقیت</h6>
+                                        <h6 class="">{{ item.category.first }}</h6>
                                         <span class="vid-time">5:25</span>
                                     </div>
                                     <div class="video-card-details">
                                         <div>
-                                            <span>22</span>
+                                            <span>{{ item.hits.count }}</span>
                                             <i class="fa fa-eye"></i>
                                         </div>
                                         <div>
@@ -50,16 +51,17 @@
 
                             </div>
                             <a href="video-detail.html">
-                                <h5 class="video-card-title m-2"> تازه ترین ویدیو ها تازه ترین ویدیو ها تازه ترین ویدیو
-                                    ها تازه ترین ویدیو هاتازه
-                                    ترین ویدیو هاتازه ترین ویدیو هاتازه ترین ویدیو ها</h5>
+                                <h5 class="video-card-title m-2">
+                                {{ item.description }}
+                                </h5>
                             </a>
                             <div class="my-3 pb-3 mx-2">
                                 <i class="fa fa-user  ml-1 "></i>
-                                <span>امیرحسین امیری</span>
+                                <span>{{ item.creator.full_name }}</span>
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
                     <!-- end item -->
 
                 </div>
