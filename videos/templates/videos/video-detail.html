@@ -26,7 +26,7 @@
                                     <video width="100%" id="myVideo" autoplay>
                                         <source src="{{ object.video.url }}" type="video/mp4">
                                     </video>
-                                    <img src="{% static 'image/p2.jpg' %}" width="100%" height="100%"
+                                    <img src="{{ object.cover_image.url }}" width="100%" height="100%"
                                         class="position-absolute video-poster" alt="">
 
                                     <div class="video-overlay"></div>
@@ -39,7 +39,7 @@
                             </div>
                             <!-- end video -->
                             <!-- title -->
-                            <h3 class="video-title my-3"> {{ object.title }}
+                            <h3 class="video-title my-3">{{ object.title }}
                             </h3>
                             <div class="d-flex align-items-center justify-content-between border-bottom pb-3">
                                 <p class="color78">{{ object.jalali_date }}</p>
@@ -111,7 +111,6 @@
                                     </div>
                                 </div>
                                 <!-- end comment -->
-
                                 <!-- end comment child -->
                                 <div class="comment my-3 p-2 comment-child">
                                     <div class=" d-flex align-items-center justify-content-between">
@@ -168,42 +167,6 @@
         </section>
 
     </main>
-
-    <script>
-        // video-player
-        const videobtn = document.querySelector('.video-btn');
-        const video = document.querySelector('.video');
-        const videotag = document.querySelector('video')
-        const videoDescription = document.querySelector('.video-description')
-        const closeBtn = document.querySelector('.close-btn')
-        const videoPoster = document.querySelector('.video-poster')
-        const videoOverlay = document.querySelector('.video-overlay')
-        function stopPlayer() {
-            videobtn.style.display = "block";
-            closeBtn.style.display = 'none';
-            videoPoster.style.display = 'inline'
-            video.style.zIndex = '-1'
-            videotag.pause()
-            videotag.style.borderRadius = '20px'
-            videoDescription.style.display = 'flex'
-            videotag.controls = false
-            videotag.style.borderRadius = '15px'
-            videoOverlay.style.display = 'block'
-        };
-
-        function playvideo() {
-            videobtn.style.display = "none";
-            video.style.zIndex = '22222'
-            videotag.autoplay = true
-            videotag.play()
-            videotag.style.borderRadius = '20px'
-            videotag.controls = true
-            videoDescription.style.display = 'none'
-            closeBtn.style.display = 'block'
-            videoPoster.style.display = 'none'
-            videoOverlay.style.display = 'none'
-        }
-    </script>
 </body>
 {% endblock %}
 
