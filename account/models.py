@@ -9,16 +9,55 @@ class User(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    full_name = models.CharField(max_length=100, verbose_name='نام و نام خانوادگی')
-    phone = models.CharField(max_length=12, unique=True, verbose_name='شماره مبایل')
-    is_active = models.BooleanField(default=True, verbose_name='فعالیت')
-    is_admin = models.BooleanField(default=False, verbose_name='ادمین')
+    full_name = models.CharField(
+        max_length=100,
+        null=True,
+        blank=True,
+        verbose_name='نام و نام خانوادگی')
+    phone = models.CharField(
+        max_length=12,
+        unique=True,
+        blank=True,
+        null=True,
+        verbose_name='شماره مبایل')
+    image = models.ImageField(
+        upload_to='images/users',
+        null=True,
+        blank=True,
+        verbose_name='تصویر کاربر')
+    bio = models.TextField(
+        null=True, blank=True)
+    instagram = models.URLField(
+        blank=True,
+        null=True,
+        unique=True,
+        verbose_name='آیدی اینستاگرام')
+    github = models.URLField(
+        blank=True,
+        null=True,
+        unique=True,
+        verbose_name='آدرس گیتهاب')
+    linkedin = models.URLField(
+        blank=True,
+        null=True,
+        unique=True,
+        verbose_name='آدرس لینکدین')
+    twitter = models.URLField(
+        blank=True,
+        null=True,
+        unique=True,
+        verbose_name='آدرس توییتر')
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name='فعالیت')
+    is_admin = models.BooleanField(
+        default=False,
+        verbose_name='ادمین')
 
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-
 
     class Meta:
         verbose_name = 'کاربر'
