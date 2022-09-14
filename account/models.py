@@ -12,7 +12,6 @@ class User(AbstractBaseUser):
     username = models.CharField(
         max_length=50,
         unique=True,
-        default=['email'],
         verbose_name='نام کاربری'
     )
     full_name = models.CharField(
@@ -75,14 +74,14 @@ class User(AbstractBaseUser):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username', ]
 
     class Meta:
         verbose_name = 'کاربر'
         verbose_name_plural = 'کاربر ها'
 
     def __str__(self):
-        return self.phone
+        return self.username
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
