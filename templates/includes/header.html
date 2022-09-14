@@ -165,7 +165,7 @@
     </header>
 
     <nav class="nav-menu nav-menu-pc  d-none d-md-flex px-4" id="navbar">
-        {% for cat in category %}
+        {% for cat in categories %}
             {% if cat.parent == None %}
                 <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item ">{{ cat.title }}</a>
                     {% if cat.children.all %}
