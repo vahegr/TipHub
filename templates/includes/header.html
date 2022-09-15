@@ -170,11 +170,11 @@
     <nav class="nav-menu nav-menu-pc  d-none d-md-flex px-4" id="navbar">
         {% for cat in categories %}
             {% if cat.parent == None %}
-                <li id="" class="mx-3 menu-item"><a href="" class="nav-menu-item ">{{ cat.title }}</a>
+                <li id="" class="mx-3 menu-item"><a href="{{ cat.get_absolute_url }}" class="nav-menu-item ">{{ cat.title }}</a>
                     {% if cat.children.all %}
                         <ul class="sub-menu">
                             {% for cat in cat.children.all %}
-                                <a href="">{{ cat.title }}</a>
+                                <a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a>
                             {% endfor %}
                         </ul>
                      {% endif %}
