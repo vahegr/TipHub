@@ -27,3 +27,9 @@ class UserLogIn(View):
             form.add_error('email', 'اطلاعات وارد شده اشتباه است')
 
         return render(request, 'account/login.html', context={'form': form})
+
+
+class UserLogOut(View):
+    def get(self, request):
+        logout(request)
+        return redirect('home:home')
