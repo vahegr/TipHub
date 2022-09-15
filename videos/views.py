@@ -20,3 +20,13 @@ class VideoDetail(DetailView):
         if ip_address not in video.hits.all():
             video.hits.add(ip_address)
         return video
+
+
+class CategoryDetail(ListView):
+    template_name = 'videos/all-videos.html'
+
+    def get_queryset(self):
+        id = self.kwargs.get('id')
+        slug = self.kwargs.get('slug')
+        category = get_object_or_404(Category, id=id, slug=slug)
+        return category.video_set.all()
