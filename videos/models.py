@@ -41,6 +41,9 @@ class Category(models.Model):                                           # catego
                          verbose_name='اسلاگ'
                          )
 
+    def get_absolute_url(self):
+        return reverse('videos:category detail', args=[self.id, self.slug])
+
     class Meta:
         verbose_name = 'دسته بندی'
         verbose_name_plural = 'دسته بندی ها'
