@@ -28,86 +28,27 @@
         <section class="my-5 container bg-white py-5">
             <h3 class="our-team-title">اعضای تیم</h3>
             <div class="d-flex align-items-center justify-content-center flex-wrap">
-                <!-- item -->
-                <div class="member">
+                {% for user in users %}
+                    <!-- item -->
+                    <div class="member">
                     <div class="member-img-box">
-                        <img alt="امیرحسین امیری" class="ui circular image" src="{% static 'image/member1.jpg' %}">
+                        {% if user.image %}
+                            <img alt="{{ user.username }}" class="ui circular image" src="{{ user.image.url }}">
+                        {% else %}
+                            <img alt="{{ user.username }}" class="ui circular image" src="{% static 'image/sutdent-prof.png' %}">
+                        {% endif %}
                     <div class="member-overlay"></div>
                     </div>
-                    <p>امیرحسین امیری</p>
+                    <p>
+                        {% if user.full_name %}
+                            {{ user.full_name }}
+                        {% else %}
+                            {{ user.username }}
+                        {% endif %}
+                    </p>
                 </div>
-                 <!-- item -->
-                 <div class="member">
-                    <div class="member-img-box">
-                        <img alt="امیرحسین امیری" class="ui circular image" src="{% static 'image/member2.jpg' %}">
-                    <div class="member-overlay"></div>
-                    </div>
-                    <p>امیرحسین امیری</p>
-                </div>
-                 <!-- item -->
-                 <div class="member">
-                    <div class="member-img-box">
-                        <img alt="امیرحسین امیری" class="ui circular image" src="{% static 'image/member3.jpg' %}">
-                    <div class="member-overlay"></div>
-                    </div>
-                    <p>امیرحسین امیری</p>
-                </div>
-                 <!-- item -->
-                 <div class="member">
-                    <div class="member-img-box">
-                        <img alt="امیرحسین امیری" class="ui circular image" src="{% static 'image/member4.jpg' %}">
-                    <div class="member-overlay"></div>
-                    </div>
-                    <p>امیرحسین امیری</p>
-                </div>
-                 <!-- item -->
-                 <div class="member">
-                    <div class="member-img-box">
-                        <img alt="امیرحسین امیری" class="ui circular image" src="{% static 'image/member5.jpg' %}">
-                    <div class="member-overlay"></div>
-                    </div>
-                    <p>امیرحسین امیری</p>
-                </div>
-                 <!-- item -->
-                 <div class="member">
-                    <div class="member-img-box">
-                        <img alt="امیرحسین امیری" class="ui circular image" src="{% static 'image/member6.jpg' %}">
-                    <div class="member-overlay"></div>
-                    </div>
-                    <p>امیرحسین امیری</p>
-                </div>
-                 <!-- item -->
-                 <div class="member">
-                    <div class="member-img-box">
-                        <img alt="امیرحسین امیری" class="ui circular image" src="{% static 'image/member7.jpg' %}">
-                    <div class="member-overlay"></div>
-                    </div>
-                    <p>امیرحسین امیری</p>
-                </div>
-                 <!-- item -->
-                 <div class="member">
-                    <div class="member-img-box">
-                        <img alt="امیرحسین امیری" class="ui circular image" src="{% static 'image/member8.jpg' %}">
-                    <div class="member-overlay"></div>
-                    </div>
-                    <p>امیرحسین امیری</p>
-                </div>
-                  <!-- item -->
-                  <div class="member">
-                    <div class="member-img-box">
-                        <img alt="امیرحسین امیری" class="ui circular image" src="{% static 'image/member9.jpg' %}">
-                    <div class="member-overlay"></div>
-                    </div>
-                    <p>امیرحسین امیری</p>
-                </div>
-                  <!-- item -->
-                  <div class="member">
-                    <div class="member-img-box">
-                        <img alt="امیرحسین امیری" class="ui circular image" src="{% static 'image/member10.jpg' %}">
-                    <div class="member-overlay"></div>
-                    </div>
-                    <p>امیرحسین امیری</p>
-                </div>
+                {% endfor %}
+
 
 
             </div>
