@@ -30,3 +30,12 @@ class CategoryDetail(ListView):
         slug = self.kwargs.get('slug')
         category = get_object_or_404(Category, id=id, slug=slug)
         return category.video_set.all()
+
+
+class SearchResult(ListView):
+    template_name = 'videos/all-videos.html'
+
+    def get_queryset(self):
+        q = self.request.GET.get('q')
+        videos = Video.objects.filter(allowing=True, title__icontains=q)
+        return videos
