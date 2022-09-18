@@ -4,7 +4,7 @@ from .models import Video, Category
 
 
 class VideoList(ListView):
-    paginate_by = 1
+    paginate_by = 9
     model = Video
     template_name = 'videos/all-videos.html'
     queryset = Video.objects.filter(allowing=True)
@@ -24,7 +24,7 @@ class VideoDetail(DetailView):
 
 
 class CategoryDetail(ListView):
-    paginate_by = 1
+    paginate_by = 9
     template_name = 'videos/all-videos.html'
 
     def get_queryset(self):
@@ -35,7 +35,7 @@ class CategoryDetail(ListView):
 
 
 class SearchResult(ListView):
-    paginate_by = 1
+    paginate_by = 9
     template_name = 'videos/all-videos.html'
 
     def get_queryset(self):
