@@ -4,9 +4,16 @@ from home.models import ContactInfo
 
 def categories(request):
     category = Category.objects.all()
-    contact_info = ContactInfo.objects.get(allowing=True)
 
     return {
         'categories': category,
-        'contact_info': contact_info,
+
+    }
+
+
+def contact_info(request):
+    contact = ContactInfo.objects.get(allowing=True)
+
+    return{
+        'contact_info': contact,
     }
