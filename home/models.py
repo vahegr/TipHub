@@ -9,6 +9,7 @@ class ContactInfo(models.Model):
     telegram = models.URLField(blank=True, verbose_name='آدرس تلگرام')
     whatsapp = models.URLField(blank=True, verbose_name='آدرس واتساپ')
     twitter = models.URLField(blank=True, verbose_name='آدرس تویتر')
+    allowing = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'اطلاعات تماس'
