@@ -57,31 +57,35 @@
                 </div>
                 <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                     <div>
-                        <h6 class="mb-3 text-white"><span class="border-bottom">خدمات مشترکین</span></h6>
+                        <h6 class="mb-3 text-white"><span class="border-bottom">تماس با ما</span></h6>
                         <a href="" class="">
                             <img src="{% static 'image/f1.svg' %}" alt="">
-                            اهواز، خیابان نادری، خیابان امیری، کوچه مهرگان، پلاک ۱۴، کد پستی 6381838168
+                            {{ contact_info.location }}
                         </a>
                         <a href="" class="">
                             <img src="{% static 'image/f2.svg' %}" alt="">
-                            پشتیبانی: 09910549803
-                        </a>
-                        <a href="" class="">
-                            <img src="{% static 'image/f3.svg' %}" alt="">
-                            30009010
+                            پشتیبانی: {{ contact_info.support }}
                         </a>
                         <a href="" class="">
                             <img src="{% static 'image/f4.svg' %}" alt="">
-                            amirhamiri74@gmial.com
+                            {{ contact_info.email }}
                         </a>
 
                         <button class="footer-btn my-3">ارسال پیام</button>
 
                         <div class="social-media d-flex align-items-center flex-wrap ">
-                            <a href=""> <i class="fa fa-instagram"></i></a>
-                            <a href=""> <i class="fa fa-telegram"></i></a>
-                            <a href=""> <i class="fa fa-whatsapp"></i></a>
-                            <a href=""> <i class="fa fa-twitter"></i></a>
+                            {% if contact_info.instagram %}
+                                <a href="{{ contact_info.instagram }}"> <i class="fa fa-instagram"></i></a>
+                            {% endif %}
+                            {% if contact_info.telegram %}
+                                <a href="{{ contact_info.telegram }}"> <i class="fa fa-telegram"></i></a>
+                            {% endif %}
+                            {% if contact_info.whatsapp %}
+                                <a href="{{ contact_info.whatsapp }}"> <i class="fa fa-whatsapp"></i></a>
+                            {% endif %}
+                            {% if contact_info.twitter %}
+                                <a href="{{ contact_info.twitter }}"> <i class="fa fa-twitter"></i></a>
+                            {% endif %}
                         </div>
 
                     </div>

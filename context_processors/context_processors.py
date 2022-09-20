@@ -12,7 +12,7 @@ def categories(request):
 
 
 def contact_info(request):
-    contact = ContactInfo.objects.get(allowing=True)
+    contact = ContactInfo.objects.get(id=1)
 
     return{
         'contact_info': contact,
