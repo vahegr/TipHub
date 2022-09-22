@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView
-from .models import Video, Category
+from django.http import JsonResponse
+from django.views.generic import ListView, DetailView, RedirectView
+from .models import Video, Category, Like
 
 
 class VideoList(ListView):
@@ -10,17 +11,30 @@ class VideoList(ListView):
     queryset = Video.objects.filter(allowing=True)
 
 
-class VideoDetail(DetailView):
-    template_name = 'videos/video-detail.html'
+def video_detail(request, id, slug):
+    video = get_object_or_404(Video, id=id, slug=slug)
+    ip_address = request.user.ip_address
+    if ip_address not in video.hits.all():
+        video.hits.add(ip_address)
+    is_liked = None
+    if request.user.is_authenticated:
+        if request.user.likes.filter(video_id=id, video__slug=slug, user_id=request.user.id).exists():
+            is_liked = True
+        else:
+            is_liked = False
 
-    def get_object(self):
-        slug = self.kwargs.get('slug')
-        id = self.kwargs.get('id')
-        video = Video.objects.get(id=id, slug=slug)
-        ip_address = self.request.user.ip_address
-        if ip_address not in video.hits.all():
-            video.hits.add(ip_address)
-        return video
+    return render(request, "videos/video-detail.html", context={'object': video, 'is_liked': is_liked})
+
+
+def video_like(request, id, slug):
+    if request.user.is_authenticated:
+        try:
+            like = Like.objects.get(video_id=id, video__slug=slug, user_id=request.user.id)
+            like.delete()
+            return JsonResponse({'response': 'unliked'})
+        except:
+            Like.objects.create(video_id=id, user_id=request.user.id)
+            return JsonResponse({'response': 'liked'})
 
 
 class CategoryDetail(ListView):
