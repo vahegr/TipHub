@@ -7,7 +7,7 @@ function like(id, slug){
             count.innerText = Number(count.innerText) - 1
         }
         else{
-            element.className = "fa fa-heart"
+            element.className = "fa fa-heart liked"
             count.innerText = Number(count.innerText) + 1
         }
     })
