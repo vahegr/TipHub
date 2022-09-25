@@ -107,3 +107,16 @@ class Like(models.Model):                                                       
 
     class Meta:
         ordering = ('-created_at',)
+
+
+class Comment(models.Model):
+    video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='replay')
+
+    comment = models.TextField(max_length=200)
+    created_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.full_name} - {self.comment[:30]}... "
