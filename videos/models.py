@@ -141,11 +141,16 @@ class Comment(models.Model):
         auto_now_add=True,
         verbose_name='زمان تولید'
     )
+    jalali_created = jmodels.jDateField(
+        auto_now_add=True,
+        null=True,
+        verbose_name='زمان تولید فارسی'
+    )
 
     class Meta:
         verbose_name = 'نظر'
         verbose_name_plural = 'نظرات'
-        ordering = ('created_time',)
+        ordering = ('-created_time',)
 
     def __str__(self):
         return f"{self.user.full_name} - {self.comment[:30]}... "
