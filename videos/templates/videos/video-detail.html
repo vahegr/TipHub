@@ -49,8 +49,17 @@
                                         <i class="fa fa-eye"></i>
                                     </div>
                                     <div>
-                                        <span>21</span>
-                                        <i class="fa fa-heart-o" type='button' aria-hidden="true"></i>
+                                        {% if request.user.is_authenticated %}
+                                            {% if is_liked %}
+                                                <span id="count">{{ object.likes.count }}</span>
+                                                <a onclick="like('{{ object.id }}', '{{ object.slug }}')" ><i class="fa fa-heart liked" id="like" aria-hidden="true"></i></a>
+                                            {% else %}
+                                                <span id="count">{{ object.likes.count }}</span>
+                                                <a onclick="like('{{ object.id }}', '{{ object.slug }}')" ><i class="fa fa-heart-o" id="like" aria-hidden="true"></i></a>
+                                            {% endif %}
+                                        {% endif %}
+
+
                                         <!-- <i class="fa fa-heart liked" type='button' aria-hidden="true" ></i> -->
                                     </div>
 
