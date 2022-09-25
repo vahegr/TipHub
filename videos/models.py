@@ -110,13 +110,42 @@ class Like(models.Model):                                                       
 
 
 class Comment(models.Model):
-    video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    video = models.ForeignKey(
+        Video,
+        on_delete=models.CASCADE,
+        related_name='comments',
+        verbose_name='ویدیو'
+    )
 
-    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='replay')
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='comments',
+        verbose_name='گاربر'
+    )
 
-    comment = models.TextField(max_length=200)
-    created_time = models.DateTimeField(auto_now_add=True)
+    parent = models.ForeignKey(
+        'self',
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name='replay',
+        verbose_name='پاسخ'
+    )
+
+    comment = models.TextField(
+        max_length=200,
+        verbose_name='نظر'
+    )
+    created_time = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='زمان تولید'
+    )
+
+    class Meta:
+        verbose_name = 'نظر'
+        verbose_name_plural = 'نظرات'
+        ordering = ('created_time',)
 
     def __str__(self):
         return f"{self.user.full_name} - {self.comment[:30]}... "
