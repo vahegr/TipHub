@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.views.generic import ListView, DetailView, RedirectView
-from .models import Video, Category, Like
+from .models import Video, Category, Like, Comment
 
 
 class VideoList(ListView):
@@ -23,7 +24,17 @@ def video_detail(request, id, slug):
         else:
             is_liked = False
 
-    return render(request, "videos/video-detail.html", context={'object': video, 'is_liked': is_liked})
+    # comments pagination
+    comments = Comment.objects.all()
+    pagination = Paginator(comments, 5)
+    page = request.GET.get('page')
+    obj_pagination = pagination.get_page(page)
+    if request.method == 'POST':
+        comment = request.POST.get('comment')
+        parent = request.POST.get('parent_id')
+        Comment.objects.create(comment=comment, video=video, user=request.user, parent_id=parent)
+
+    return render(request, "videos/video-detail.html", context={'object': video, 'is_liked': is_liked, 'obj_p': obj_pagination})
 
 
 def video_like(request, id, slug):
