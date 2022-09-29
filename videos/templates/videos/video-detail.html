@@ -87,58 +87,72 @@
                             <div>
 
                                 <div class="py-3">
-                                    <span>2982</span>
+                                    <span>{{ object.comments.count }}</span>
                                     <span>نظر</span>
                                 </div>
-
-                                <form action="">
-                                    <textarea class="w-100 p-2 comment-area" name="" id="" cols="30" rows="10"
+                                {% if request.user.is_authenticated %}
+                                <form action="" id="comment" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" id="parent_id" name="parent_id" value="">
+                                    <textarea class="w-100 p-2 comment-area" name="comment" id="write" cols="30" rows="10"
                                         placeholder="دیدگاه خود را بنویسید"></textarea>
                                     <div class="d-flex align-items-center justify-content-end pt-3">
-                                        <button class="btn custom-btn">ارسال نظر</button>
+                                        <button type="submit" class="btn custom-btn">ارسال نظر</button>
                                     </div>
                                 </form>
-                                <!-- comment -->
-                                <div class="comment my-3 p-2">
+                                {% else %}
+                                    <div class="py-3">
+                                    <span style="color: red">برای ارسال نظر لطفا وارد حساب کاربری خود شوید</span>
+                                </div>
+                                {% endif %}
+                                {% for comment in object.comments.all %}
+                                    {% if comment.parent == None %}
+
+                                    <div class="comment my-3 p-2">
                                     <div class=" d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center justify-content-center">
-                                            <img src="{% static 'image/sutdent-prof.png' %}" alt="student" class="user-profile">
-                                            <p class="user-name pr-2">امیرحسین امیری</p>
+                                            {% if comment.user.image %}
+                                                <img src="{{ comment.user.image.url }}" alt="{{ comment.user.username }}" class="user-profile">
+                                            {% else %}
+                                                <img src="{% static 'image/sutdent-prof.png' %}" alt="{{ comment.user.username }}" class="user-profile">
+                                            {% endif %}
+
+                                            <p class="user-name pr-2">{{ comment.user.username }}</p>
                                         </div>
 
-                                        <p class="comment-date-time"> چهار روز پیش</p>
+                                        <p class="comment-date-time"> {{ comment.jalali_created }}</p>
                                     </div>
-                                    <p class="px-4 py-2 comment-text text-justify"> لورم ایپسوم متن ساختگی
-                                        با تولید سادگی نامفهوم
-                                        از صنعت چاپ،
-                                        و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه
-                                        روزنامه و مجله در ستون و سطرآنچنان که لازم است،</p>
+                                    <p class="px-4 py-2 comment-text text-justify">{{ comment.comment }}</p>
 
-                                    <div class="d-flex align-items-center justify-content-end reply" type='button'>
+                                    {% if request.user.is_authenticated %}
+                                    <div onclick="set_value({{ comment.id }})" class="d-flex align-items-center justify-content-end reply" type='button'>
                                         <i class="fa fa-reply"></i>
                                         <p>پاسخ به این نظر</p>
                                     </div>
+                                    {% endif %}
                                 </div>
-                                <!-- end comment -->
-                                <!-- end comment child -->
-                                <div class="comment my-3 p-2 comment-child">
+
+
+                                    {% for replay in comment.replay.all %}
+                                        <div class="comment my-3 p-2 comment-child">
                                     <div class=" d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center justify-content-center">
-                                            <img src="{% static 'image/sutdent-prof.png' %}" alt="student" class="user-profile">
-                                            <p class="user-name pr-2">امیرحسین امیری</p>
+                                            {% if replay.user.image %}
+                                                <img src="{{ replay.user.image.url }}" alt="{{ replay.user.username }}" class="user-profile">
+                                            {% else %}
+                                                <img src="{% static 'image/sutdent-prof.png' %}" alt="{{ replay.user.username }}" class="user-profile">
+                                            {% endif %}
+                                            <p class="user-name pr-2">{{ replay.user.username }}</p>
                                         </div>
 
-                                        <p class="comment-date-time"> چهار روز پیش</p>
+                                        <p class="comment-date-time">{{ replay.jalali_created }}</p>
                                     </div>
-                                    <p class="px-4 py-2 comment-text text-justify"> لورم ایپسوم متن ساختگی
-                                        با تولید سادگی نامفهوم
-                                        از صنعت چاپ،
-                                        و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه
-                                        روزنامه و مجله در ستون و سطرآنچنان که لازم است،</p>
+                                    <p class="px-4 py-2 comment-text text-justify">{{ replay.comment }}</p>
 
                                 </div>
-                                <!-- end comment -->
-
+                                    {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
 
 
                             </div>
@@ -188,6 +202,12 @@
         </section>
 
     </main>
+    <script>
+        function set_value(id){
+            document.getElementById('parent_id').value = id;
+            window.location.href = '#write'
+        }
+    </script>
 </body>
 {% endblock %}
 
