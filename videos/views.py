@@ -25,7 +25,7 @@ def video_detail(request, id, slug):
             is_liked = False
 
     # comments pagination
-    comments = Comment.objects.all()
+    comments = video.comments.all()
     pagination = Paginator(comments, 5)
     page = request.GET.get('page')
     obj_pagination = pagination.get_page(page)
@@ -34,7 +34,7 @@ def video_detail(request, id, slug):
         parent = request.POST.get('parent_id')
         Comment.objects.create(comment=comment, video=video, user=request.user, parent_id=parent)
 
-    return render(request, "videos/video-detail.html", context={'object': video, 'is_liked': is_liked, 'obj_p': obj_pagination})
+    return render(request, "videos/video-detail.html", context={'object': video, 'is_liked': is_liked, 'comments': obj_pagination})
 
 
 def video_like(request, id, slug):

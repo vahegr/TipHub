@@ -105,7 +105,7 @@
                                     <span style="color: red">برای ارسال نظر لطفا وارد حساب کاربری خود شوید</span>
                                 </div>
                                 {% endif %}
-                                {% for comment in object.comments.all %}
+                                {% for comment in comments %}
                                     {% if comment.parent == None %}
 
                                     <div class="comment my-3 p-2">
@@ -130,6 +130,10 @@
                                         <p>پاسخ به این نظر</p>
                                     </div>
                                     {% endif %}
+
+                                    {% if comment.user == user %}
+                                        <a href="" type="button"><i class="fa fa-remove"></i></a>
+                                    {% endif %}
                                 </div>
 
 
@@ -153,6 +157,24 @@
                                     {% endfor %}
                                     {% endif %}
                                 {% endfor %}
+
+
+                                        <div class="d-flex align-items-center justify-content-center mb-3 pagination">
+                                        {% if comments.has_previous %}
+                                            <a href="?page={{ comments.previous_page_number }}" class="mx-1"><i class="fa fa-chevron-right"></i></a>
+                                            <a href="?page=1" class="mx-1">1</a>
+                                            <a href="?page={{ comments.previous_page_number }}" class="mx-1">{{ comments.previous_page_number }}</a>
+                                        {% endif %}
+
+                                            <a href="?page={{ comments.number }}" class="active mx-1">{{ comments.number }}</a>
+                                        {% if comments.has_next %}
+                                            <a href="?page={{ comments.next_page_number }}" class="mx-1">{{ comments.next_page_number }}</a>
+                                            <a href="?page={{ comments.paginator.num_pages }}" class="mx-1">{{ comments.paginator.num_pages }}</a>
+                                            <a href="?page={{ comments.next_page_number }}" class="mx-1"><i class="fa fa-chevron-left"></i></a>
+                                        {% endif %}
+
+                                        </div>
+
 
 
                             </div>
