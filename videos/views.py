@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpResponse
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.views.generic import ListView, DetailView, RedirectView
@@ -35,6 +35,17 @@ def video_detail(request, id, slug):
         Comment.objects.create(comment=comment, video=video, user=request.user, parent_id=parent)
 
     return render(request, "videos/video-detail.html", context={'object': video, 'is_liked': is_liked, 'comments': obj_pagination})
+
+
+def comment_delete(request, pk):
+    if request.user.is_authenticated:
+        comment = Comment.objects.get(id=pk)
+        video_id = comment.video.id
+        video_slug = comment.video.slug
+        comment.delete()
+        return redirect(reverse('videos:video detail', kwargs={'id': video_id, 'slug': video_slug}))
+    else:
+        return redirect('home:home')
 
 
 def video_like(request, id, slug):

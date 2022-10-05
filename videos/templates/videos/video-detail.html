@@ -102,9 +102,11 @@
                                 </form>
                                 {% else %}
                                     <div class="py-3">
-                                    <span style="color: red">برای ارسال نظر لطفا وارد حساب کاربری خود شوید</span>
-                                </div>
+                                        <span style="color: red">برای ارسال نظر لطفا وارد حساب کاربری خود شوید</span>
+                                    </div>
                                 {% endif %}
+
+                                {% if comments %}
                                 {% for comment in comments %}
                                     {% if comment.parent == None %}
 
@@ -132,7 +134,7 @@
                                     {% endif %}
 
                                     {% if comment.user == user %}
-                                        <a href="" type="button"><i class="fa fa-remove"></i></a>
+                                        <a href="{% url 'videos:delete comment' comment.id %}" type="button"><i class="fa fa-remove"></i></a>
                                     {% endif %}
                                 </div>
 
@@ -174,6 +176,11 @@
                                         {% endif %}
 
                                         </div>
+                            {% else %}
+                                  <div class="py-3">
+                                        <span>درحال حاضر نظری ثبت نشده است...</span>
+                                  </div>
+                            {% endif %}
 
 
 

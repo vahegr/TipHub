@@ -9,4 +9,5 @@ urlpatterns = [
     re_path(r'category_detail/(?P<id>[0-9]+)/(?P<slug>[-\w]+)/', views.CategoryDetail.as_view(), name='category detail'),
     re_path(r'video_like/(?P<id>[0-9]+)/(?P<slug>[-\w]+)/', views.video_like, name='video like'),
     path("search_result/", views.SearchResult.as_view(), name='search result'),
+    re_path(r'delete_comment/(?P<pk>[0-9]+)/', views.comment_delete, name='delete comment'),
 ]
