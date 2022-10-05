@@ -38,8 +38,8 @@ def video_detail(request, id, slug):
 
 
 def comment_delete(request, pk):
-    if request.user.is_authenticated:
-        comment = Comment.objects.get(id=pk)
+    comment = Comment.objects.get(id=pk)
+    if request.user.is_authenticated and comment.user_id == request.user.id:
         video_id = comment.video.id
         video_slug = comment.video.slug
         comment.delete()
