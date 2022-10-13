@@ -1,6 +1,7 @@
 import datetime
 import jdatetime
 from django.db import models
+from .managers import NotificationManager
 from django_jalali.db import models as jmodels
 from django.utils import timezone
 from extensions.utils import jalali_converter
@@ -154,3 +155,20 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.user.full_name} - {self.comment[:30]}... "
+
+
+class Notification(models.Model):
+    sender = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='notification_sender')
+    receiver = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='notification_receiver')
+    is_read = models.BooleanField()
+    category = models.CharField(max_length=10)
+    notification_date = models.DateTimeField(default=timezone.now)
+    jalali_created = jmodels.jDateField(auto_now_add=True, null=True, verbose_name='زمان تولید فارسی')
+    post_id = models.IntegerField(default=-1)
+    n_count = models.PositiveIntegerField(default=0)
+    objects = NotificationManager()
+
+    def __str__(self):
+        return f'From: {str(self.sender)} | To: {str(self.receiver)} | Category: {str(self.category)} | Count: {str(self.n_count)}'
