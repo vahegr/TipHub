@@ -26,7 +26,9 @@
                         <div class="position-relative d-none d-md-block " type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="{% static 'image/notification.png' %}" class="notification-img" alt="">
-                            <div class="badge">2</div>
+                            {% if status %}
+                                <div class="badge">{{ notif_count }}</div>
+                            {% endif %}
                         </div>
                         <div class="dropdown-menu notification-menu-items custom-bg"
                             aria-labelledby="dropdownMenuButton">
