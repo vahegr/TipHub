@@ -32,9 +32,24 @@
                         </div>
                         <div class="dropdown-menu notification-menu-items custom-bg"
                             aria-labelledby="dropdownMenuButton">
-                            <a class="border-bottom" href="#"> ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ </a>
-                            <a class="border-bottom" href="#"> ایپسوم متن ساختگی با تولید </a>
-                            <a class="border-bottom" href="#"> ایپسوم متن ساختگی با تولید سادگی</a>
+                        {% if status %}
+                            {% for notif in unread_notifs %}
+                                {% if notif.n_post_id != -1 %}
+                                <a class="border-bottom" href="{% url 'videos:read_notification' notif.n_post_id %}">
+                                    نظر جدید از {{ notif.n_sender.full_name }}
+                                    {{ notif.jalali_created }}
+                                </a>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                            {% for notif in read_notifications %}
+                                <a class="border-bottom">
+                                    {% if notif.n_post_id != -1 %}
+                                         نظر جدید از {{ notif.sender.full_name }}
+                                        {{ notif.jalali_created }}
+                                    {% endif %}
+                                </a>
+                            {% endfor %}
 
                         </div>
                     </div>
