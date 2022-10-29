@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpResponse
 from django.core.paginator import Paginator
 from django.http import JsonResponse
-from django.views.generic import ListView, DetailView, RedirectView
-from .models import Video, Category, Like, Comment
+from django.views.generic import ListView, DetailView, RedirectView, View
+from .models import Video, Category, Like, Comment, Notification
 
 
 class VideoList(ListView):
@@ -14,6 +14,7 @@ class VideoList(ListView):
 
 def video_detail(request, id, slug):
     video = get_object_or_404(Video, id=id, slug=slug)
+    video_creator = video.creator
     ip_address = request.user.ip_address
     if ip_address not in video.hits.all():
         video.hits.add(ip_address)
@@ -33,8 +34,22 @@ def video_detail(request, id, slug):
         comment = request.POST.get('comment')
         parent = request.POST.get('parent_id')
         Comment.objects.create(comment=comment, video=video, user=request.user, parent_id=parent)
+        if video_creator != request.user:
+            Notification.objects.add_notification(request.user, video_creator, 'comment', video.id)
 
     return render(request, "videos/video-detail.html", context={'object': video, 'is_liked': is_liked, 'comments': obj_pagination})
+
+
+def read_notification(request, notif_id):
+    comment_notification = Notification.objects.get(receiver=request.user, post_id=notif_id, is_read=False)
+    video = Video.objects.get(id=comment_notification.post_id)
+    if request.user.is_authenticated:
+        if comment_notification:
+            comment_notification.is_read = True
+            comment_notification.save()
+            return redirect(reverse('videos:video detail', kwargs={'id': video.id, 'slug': video.slug}))
+    else:
+        return redirect('home:home')
 
 
 def comment_delete(request, pk):
