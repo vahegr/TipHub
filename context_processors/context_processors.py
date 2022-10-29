@@ -21,9 +21,9 @@ def contact_info(request):
 
 def notifications_exist(request):
     if request.user.is_authenticated:
-        unread_notifs = Notification.objects.get_notification_count(request.user)
+        unread_notifs = Notification.objects.get_notification_count(request.user)[:3]
         read_notifs = Notification.objects.filter(
-            receiver=request.user, is_read=True).order_by('-notification_date')
+            receiver=request.user, is_read=True).order_by('-notification_date')[:3]
         f = len(unread_notifs)
 
         status = True if f > 0 else False
