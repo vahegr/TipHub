@@ -15,13 +15,18 @@ class NotificationManager(models.Manager):
 
         for item in notifs_count:
             n_post_id = item.post_id
+            if n_post_id != -1:
+                n_slug = videos.models.Video.objects.values('slug').filter(id=n_post_id).first()['slug']
+            else:
+                n_slug = None
             n_count = item.n_count
             n_sender = item.sender
             n_timestamp = item.notification_date
+            n_jalali_date = item.jalali_created
 
             # Appending the above data as dictionary to notif_data list
-            notif_data.append({'n_post_id': n_post_id, 'n_count': n_count, 'n_sender': n_sender.username,
-                               'n_timestamp': n_timestamp})
+            notif_data.append({'n_post_id': n_post_id, 'n_count': n_count, 'n_sender': n_sender,
+                               'n_timestamp': n_timestamp, 'jalali_created': n_jalali_date, 'n_slug': n_slug})
 
         return notif_data
 
