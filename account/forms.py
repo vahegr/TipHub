@@ -21,7 +21,7 @@ class UserCreationForm(forms.ModelForm):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
-            raise ValidationError("Passwords don't match")
+            raise ValidationError("اختلافی در کلمه عبور وجود دارد")
         return password2
 
     def save(self, commit=True):
@@ -46,5 +46,5 @@ class UserChangeForm(forms.ModelForm):
 
 
 class LogInForm(forms.Form):
-    email = forms.CharField(widget=forms.TextInput(attrs={"class": "email-input"}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "password-input"}))
+    email = forms.CharField(widget=forms.TextInput(attrs={"class": "email-input", "placeholder": "پست الکترونیک"}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "password-input", "placeholder": "گذرواژه"}))
