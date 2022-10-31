@@ -12,42 +12,89 @@
 
         <section class="py-5">
             <div class="container">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-sm-9 col-md-8 col-lg-8">
+               <div class="row d-flex justify-content-center">
+                <div class="col-sm-9 col-md-11 col-lg-10">
+                    <div class="user-panel custom-bg">
+                        <div class="user-panel-box">
 
-                            <!-- item1 -->
+                            {% if object.image %}
+                                <div class="user-panel-profile">
+                                    <img src="{{ object.image.url }}" alt="{{ object.username }}">
+                                </div>
+                            {% else %}
+                                <div class="user-panel-profile">
+                                    <img src="{% static 'image/sutdent-prof.png' %}" alt="{{ object.username }}">
+                                </div>
+                            {% endif %}
 
-                            <div class="p-3 custom-bg user-details user-item my-2">
-                                <div class="row">
+                            {% if object.bio %}
+                                <div style="margin-bottom: 10px" class="border-bottom pb-3">
+                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                                    استفاده از طراحان
+                                    گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای
+                                    شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می
+                                    باشد</p>
+                                </div>
+                            {% endif %}
+
+                            {% if object.full_name %}
+                                <div class="col-lg-6 mb-4">
+                                    <i class="fa fa-user"></i>
+                                    <h6 class=" font-weight-bold"> {{ object.full_name }} </h6>
+                                </div>
+                            {% endif %}
+
+                            <div class="col-lg-6 mb-4">
+                                <i class="fa fa-envelope"></i>
+                                <h6 class=" font-weight-bold"> {{ object.email }} </h6>
+                           </div>
+
+                            {% if request.user.is_authenticated and request.user.id == object.id %}
+                                {% if object.phone %}
                                     <div class="col-lg-6 mb-4">
-                                        <p class="">نام و نام خانوادگی:</p>
-                                        <h6 class=" font-weight-bold">{{ user.full_name }}</h6>
+                                        <i class="fa fa-phone"></i>
+                                        <h6 class=" font-weight-bold"> {{ object.phone }} </h6>
                                     </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <p class="">پست الکترونیک:</p>
-                                        <h6 class=" font-weight-bold">{{ user.email }}</h6>
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <p class="">شماره تلفن همراه:</p>
-                                        <h6 class=" font-weight-bold">{{ user.phone }}</h6>
-                                    </div>
-                                    <div class="col-lg-6 mb-4">
-                                        <p class="">نام کاربری:</p>
-                                        <h6 class=" font-weight-bold">{{ user.username }}</h6>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="text-center">
-                                            <a class="" href="edit-user-panel.html">
-                                                <i class="fa fa-edit"></i>
-                                                ویرایش اطلاعات شخصی
-                                            </a>
-                                        </div>
-                                    </div>
+                                {% endif %}
+                            {% endif %}
+
+
+                            <div class="col-lg-6 mb-4">
+                                <i class="fa fa-user-circle"></i>
+                                <h6 class=" font-weight-bold"> {{ object.username}} </h6>
+                            </div>
+
+
+                            <div class="col-lg-6 mb-4">
+                                <i class="fa fa-video-camera"></i>
+                                <h6 class=" font-weight-bold"> ویدیو ها </h6>
+                            </div>
+
+                        {% if request.user.is_authenticated and request.user.id == object.id %}
+                            <div class="col-lg-6 mb-4">
+                                <i class="fa fa-heart"></i>
+                                <h6 class=" font-weight-bold"> مورد علاقه های من </h6>
+                            </div>
+                        {% endif %}
+
+                        </div>
+
+                        {% if request.user.is_authenticated and request.user.id == object.id %}
+                            <div class="col-12">
+                                <div class="text-center">
+                                    <a class="" href="edit-user-panel.html">
+                                        <i class="fa fa-edit"></i>
+                                        ویرایش اطلاعات شخصی
+                                    </a>
                                 </div>
                             </div>
+                        {% endif %}
+
 
                     </div>
                 </div>
+               </div>
+            </div>
         </section>
 
 
