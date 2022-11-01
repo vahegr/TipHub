@@ -60,6 +60,34 @@
                                 <h6 class=" font-weight-bold"> {{ object.username}} </h6>
                             </div>
 
+                            {% if object.instagram %}
+                                <div class="col-lg-6 mb-4">
+                                    <i class="fa fa-instagram"></i>
+                                    <a style="color: black" href="{{ object.instagram }}"><h6 class=" font-weight-bold"> instagram </h6></a>
+                                </div>
+                            {% endif %}
+
+                            {% if object.github %}
+                                <div class="col-lg-6 mb-4">
+                                    <i class="fa fa-github"></i>
+                                    <a style="color: black" href="{{ object.github }}"><h6 class=" font-weight-bold"> github </h6></a>
+                                </div>
+                            {% endif %}
+
+                            {% if object.linkedin %}
+                                <div class="col-lg-6 mb-4">
+                                    <i class="fa fa-linkedin"></i>
+                                    <a style="color: black" href="{{ object.linkedin }}"><h6 class=" font-weight-bold"> linkedin </h6></a>
+                                </div>
+                            {% endif %}
+
+                            {% if object.twitter %}
+                                <div class="col-lg-6 mb-4">
+                                    <i class="fa fa-twitter"></i>
+                                    <a style="color: black" href="{{ object.twitter }}"><h6 class=" font-weight-bold"> twitter </h6></a>
+                                </div>
+                            {% endif %}
+
 
                             <div class="col-lg-6 mb-4">
                                 <i class="fa fa-video-camera"></i>
