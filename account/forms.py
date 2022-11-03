@@ -48,3 +48,49 @@ class UserChangeForm(forms.ModelForm):
 class LogInForm(forms.Form):
     email = forms.CharField(widget=forms.TextInput(attrs={"class": "email-input", "placeholder": "پست الکترونیک"}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "password-input", "placeholder": "گذرواژه"}))
+
+
+class EditProfileForm(forms.Form):
+    full_name = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={'placeholder': 'نام و نام خانوادگی'}))
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={'placeholder': 'ایمیل'}))
+    phone = forms.CharField(
+        required=False,
+        max_length=11,
+        min_length=11,
+        widget=forms.TextInput(
+            attrs={'placeholder': 'شماره مبایل'}))
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'نام کاربری'}))
+    bio = forms.CharField(
+        required=False,
+        widget=forms.Textarea(
+            attrs={'placeholder': 'درباره'}))
+    instagram = forms.CharField(
+        required=False, widget=forms.URLInput(
+            attrs={'placeholder': 'آدرس اینستاگرام'}
+        ))
+    github = forms.CharField(
+        required=False,
+        widget=forms.URLInput(
+            attrs={'placeholder': 'آدرس گیتهاب'}
+        ))
+    linkedin = forms.CharField(
+        required=False,
+        widget=forms.URLInput(
+            attrs={'placeholder': 'آدرس لینکدین'}
+        ))
+    twitter = forms.CharField(
+        required=False,
+        widget=forms.URLInput(
+            attrs={'placeholder': 'آدرس توییتر'}
+        ))
+    image = forms.ImageField(required=False, label='تصویر')
+
+    class Meta:
+        model = User
+        fields = ('full_name', 'email',
+                  'phone', 'username', 'bio', 'image',
+                  'instagram', 'github', 'linkedin', 'twitter')
