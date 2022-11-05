@@ -1054,10 +1054,22 @@ background-color: transparent;
     border-radius: 100%;
 }
 .change-profile-btn{
+    width: 700px;
+    color: white;
     position: absolute;
-    top: -17px;
+    margin-top: -20px;
+    top: -25px;
     right: 140px;
+    padding: 10px;
+    background-color: #112031;
+    border-radius: 10px;
 }
+
+.bio{
+    padding-top: 20px;
+    border: none;
+}
+
 .user-details p {
     font-size: 13px;
     color: #787878;

@@ -50,7 +50,7 @@ class LogInForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "password-input", "placeholder": "گذرواژه"}))
 
 
-class EditProfileForm(forms.Form):
+class EditProfileForm(forms.ModelForm):
     full_name = forms.CharField(
         required=False,
         widget=forms.TextInput(attrs={'placeholder': 'نام و نام خانوادگی'}))
@@ -67,7 +67,7 @@ class EditProfileForm(forms.Form):
     bio = forms.CharField(
         required=False,
         widget=forms.Textarea(
-            attrs={'placeholder': 'درباره'}))
+            attrs={'class': 'bio', 'placeholder': 'درباره'}))
     instagram = forms.CharField(
         required=False, widget=forms.URLInput(
             attrs={'placeholder': 'آدرس اینستاگرام'}
@@ -87,7 +87,7 @@ class EditProfileForm(forms.Form):
         widget=forms.URLInput(
             attrs={'placeholder': 'آدرس توییتر'}
         ))
-    image = forms.ImageField(required=False, label='تصویر')
+    image = forms.ImageField(required=False)
 
     class Meta:
         model = User

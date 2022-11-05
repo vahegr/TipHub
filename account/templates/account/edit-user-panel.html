@@ -16,36 +16,64 @@
                 <div class="col-sm-9 col-md-11 col-lg-10">
                     <div class="user-panel custom-bg">
                         <div class="user-panel-box">
-
-                            <div class="user-panel-profile">
-                                <img src="assets/image/member8.jpg" alt="">
-                            </div>
+                            <form method="post">
+                            {% csrf_token %}
+                            {% if request.user.image %}
+                                <div class="user-panel-profile">
+                                    <img src="{{ request.user.image.url }}" alt="{{ request.user.username }}">
+                                </div>
+                            {% else %}
+                                <div class="user-panel-profile">
+                                    <img src="{% static 'image/sutdent-prof.png' %}" alt="{{ request.user.username }}">
+                                </div>
+                            {% endif %}
                             <div class="change-profile-btn">
-                                <button class="btn custom-btn">تغییر عکس پروفایل</button>
+                                {{ form.image }}
                             </div>
+
+                            <div style="margin-bottom: 10px" class="border-bottom pb-3">
+                                <p>{{ form.bio }}</p>
+                            </div>
+
                             <!-- item -->
                             <div class="user-panel-field">
                                 <i class="fa fa-user"></i>
-                                <input class="email-input" type="text" placeholder="نام و نام خانوادگی"
-                                    required="">
+                                {{ form.full_name }}
                             </div>
                             <!-- item -->
                             <div class="user-panel-field">
                                 <i class="fa fa-envelope"></i>
-                                <input class="email-input" type="email" placeholder="پست الکترونیک" dir="ltr" maxlength="50"
-                                    required="">
+                                {{ form.email }}
                            </div>
                             <!-- item -->
                             <div class="user-panel-field">
                                 <i class="fa fa-phone"></i>
-                                <input class="email-input" type="tel" placeholder="شماره تلفن"
-                                    required="">
+                                {{ form.phone }}
                             </div>
                             <!-- item -->
                             <div class="user-panel-field">
                                 <i class="fa fa-user-circle"></i>
-                                <input class="" type="text" placeholder="نام کاربری"
-                                    required="">
+                                {{ form.username }}
+                            </div>
+
+                            <div class="col-lg-6 mb-4">
+                                <i class="fa fa-instagram"></i>
+                                {{ form.instagram }}
+                            </div>
+
+                            <div class="col-lg-6 mb-4">
+                                <i class="fa fa-github"></i>
+                                {{ form.github }}
+                            </div>
+
+                            <div class="col-lg-6 mb-4">
+                                <i class="fa fa-linkedin"></i>
+                                {{ form.linkedin }}
+                            </div>
+
+                            <div class="col-lg-6 mb-4">
+                                <i class="fa fa-twitter"></i>
+                                {{ form.twitter }}
                             </div>
 
                         </div>
@@ -53,6 +81,7 @@
                         <div class="d-flex justify-content-center mt-3 ">
                             <button type="submit" class="btn custom-btn w-50">اعمال تغییرات</button>
                         </div>
+                        </form>
 
 
                     </div>
