@@ -52,10 +52,10 @@
                                         {% if request.user.is_authenticated %}
                                             {% if is_liked %}
                                                 <span id="count">{{ object.likes.count }}</span>
-                                                <a onclick="like('{{ object.id }}', '{{ object.slug }}')" ><i class="fa fa-heart liked" id="like" aria-hidden="true"></i></a>
+                                                <a onclick="like('{{ object.id }}')" ><i class="fa fa-heart liked" id="like"></i></a>
                                             {% else %}
                                                 <span id="count">{{ object.likes.count }}</span>
-                                                <a onclick="like('{{ object.id }}', '{{ object.slug }}')" ><i class="fa fa-heart-o" id="like" aria-hidden="true"></i></a>
+                                                <a onclick="like('{{ object.id }}')" ><i class="fa fa-heart-o" id="like"></i></a>
                                             {% endif %}
                                         {% endif %}
 

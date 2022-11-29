@@ -63,10 +63,10 @@ def comment_delete(request, pk):
         return redirect('home:home')
 
 
-def video_like(request, id, slug):
+def video_like(request, id):
     if request.user.is_authenticated:
         try:
-            like = Like.objects.get(video_id=id, video__slug=slug, user_id=request.user.id)
+            like = Like.objects.get(video_id=id, user_id=request.user.id)
             like.delete()
             return JsonResponse({'response': 'unliked'})
         except:
