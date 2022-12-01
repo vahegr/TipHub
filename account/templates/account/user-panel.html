@@ -106,7 +106,7 @@
                         {% if request.user.is_authenticated and request.user.id == object.id %}
                             <div class="col-12">
                                 <div class="text-center">
-                                    <a class="" href="edit-user-panel.html">
+                                    <a class="" href="{% url 'account:edit profile' %}">
                                         <i class="fa fa-edit"></i>
                                         ویرایش اطلاعات شخصی
                                     </a>

@@ -36,7 +36,7 @@
                                         <label class="small">نمایش گذرواژه</label>
                                         </div>
                                         <div>
-                                            <a href="forgotpassword.html" class="small">رمز عبور خود را فراموش کرده اید؟</a>
+                                            <a href="{% url 'account:password_reset' %}" class="small">رمز عبور خود را فراموش کرده اید؟</a>
                                         </div>
 
                                 </div>
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="pb-2 border-bottom">
                                     <span class="small">حساب کاربری ندارید؟</span>
-                                <a href="register.html" class="small">
+                                <a href="{% url 'account:register' %}" class="small">
                                     عضویت در سایت
                                 </a>
                                 </div>
