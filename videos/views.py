@@ -1,3 +1,4 @@
+import requests.utils
 from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpResponse
 from django.core.paginator import Paginator
 from django.http import JsonResponse
@@ -10,6 +11,15 @@ class VideoList(ListView):
     model = Video
     template_name = 'videos/all-videos.html'
     queryset = Video.objects.filter(allowing=True)
+
+
+class FavoriteVideos(ListView):
+    paginate_by = 9
+    template_name = 'videos/all-videos.html'
+
+    def get_queryset(self):
+        liked_videos = Video.objects.filter(likes__user_id=self.request.user.id)
+        return liked_videos
 
 
 def video_detail(request, id, slug):

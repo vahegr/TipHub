@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-    Tip Hub | پنل کاربری
+    Tip Hub | {{ object.username }}
 {% endblock %}
 <html lang="en">
 
@@ -40,7 +40,7 @@
                             {% endif %}
 
                             {% if object.bio %}
-                                <div style="margin-bottom: 10px" class="border-bottom pb-3">
+                                <div style="margin-bottom: 10px; width: 100%; text-align: center" class="border-bottom pb-3">
                                     <p>{{ object.bio }}</p>
                                 </div>
                             {% endif %}
@@ -109,7 +109,7 @@
                         {% if request.user.is_authenticated and request.user.id == object.id %}
                             <div class="col-lg-6 mb-4">
                                 <i class="fa fa-heart"></i>
-                                <h6 class=" font-weight-bold"> مورد علاقه های من </h6>
+                                <a style="color: black" href="{% url 'videos:favorites' %}"><h6 class=" font-weight-bold"> مورد علاقه های من </h6></a>
                             </div>
                         {% endif %}
 
