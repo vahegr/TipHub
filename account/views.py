@@ -1,5 +1,7 @@
+import requests
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404, reverse, HttpResponse
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str
@@ -10,7 +12,7 @@ from django.core.mail import EmailMessage
 from django.views import View
 from django.views.generic import DetailView, CreateView
 from .forms import LogInForm, EditProfileForm, UserCreationForm
-from .models import User
+from .models import User, UserFollowing
 
 
 class UserRegister(CreateView):
@@ -89,13 +91,28 @@ class UserLogOut(View):
         return redirect('home:home')
 
 
-class UserProfile(DetailView):
-    template_name = 'account/user-panel.html'
+# class UserProfile(DetailView):
+#     template_name = 'account/user-panel.html'
+#
+#     def get_object(self):
+#         id = self.kwargs.get('id')
+#         username = self.kwargs.get('username')
+#         user = get_object_or_404(User, id=id, username=username)
+#         follower_user = self.request.user
+#         if user.followers.filter(user_id=follower_user.id, following_user_id=id, its_following=True).exists():
+#             are_following = True
+#         else:
+#             are_following = False
+#         return user, are_following
 
-    def get_object(self):
-        id = self.kwargs.get('id')
-        username = self.kwargs.get('username')
-        return get_object_or_404(User, id=id, username=username)
+def user_profile(request, id, username):
+    user = User.objects.get(id=id, username=username)
+    follower_user = request.user
+    if user.followers.filter(user_id=follower_user.id, following_user_id=id, its_following=True).exists():
+        are_following = True
+    else:
+        are_following = False
+    return render(request, "account/user-panel.html", context={'object': user, 'are_following': are_following})
 
 
 def edit_profile(request):
@@ -108,3 +125,18 @@ def edit_profile(request):
                 form.save()
                 return redirect(reverse('account:profile', kwargs={'id': request.user.id, 'username': request.user.username}))
         return render(request, "account/edit-user-panel.html", context={'form': form})
+
+
+def user_follow(request, id):
+    user = User.objects.get(id=id)
+    username = user.username
+    if request.user.is_authenticated and id != request.user.id:
+        try:
+            follow = UserFollowing.objects.get(user_id=request.user.id, following_user_id=id, its_following=True)
+            follow.delete()
+        except:
+            UserFollowing.objects.create(user_id=request.user.id, following_user_id=id, its_following=True)
+
+        return redirect('account:profile', id, username)
+    else:
+        return redirect('home:home')

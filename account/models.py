@@ -98,3 +98,18 @@ class User(AbstractBaseUser):
         " Is the user a member of staff? "
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+
+class UserFollowing(models.Model):
+    user = models.ForeignKey(User, related_name="following", on_delete=models.CASCADE, verbose_name='کاربر')
+    following_user = models.ForeignKey(User, related_name="followers", on_delete=models.CASCADE, verbose_name='کابر دنبال کننده')
+    its_following = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user} followed {self.following_user} "
+
+    class Meta:
+        ordering = ('-created_at',)
+        verbose_name = 'دنبال کننده'
+        verbose_name_plural = 'دنبال کنندگان'

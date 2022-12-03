@@ -27,6 +27,18 @@
                                 </div>
                             {% endif %}
 
+                            {% if request.user.is_authenticated and request.user.id != object.id %}
+                                <div style="width: 110px; margin-top: 0px" class="change-profile-btn">
+                                    <a href="{% url 'account:follow' object.id %}">
+                                        {% if are_following %}
+                                            <button class="btn custom-btn">دنبال نکردن</button>
+                                        {% else %}
+                                            <button class="btn custom-btn">دنبال کردن</button>
+                                        {% endif %}
+                                    </a>
+                                </div>
+                            {% endif %}
+
                             {% if object.bio %}
                                 <div style="margin-bottom: 10px" class="border-bottom pb-3">
                                     <p>{{ object.bio }}</p>
@@ -100,6 +112,12 @@
                                 <h6 class=" font-weight-bold"> مورد علاقه های من </h6>
                             </div>
                         {% endif %}
+
+
+                        <div class="col-lg-6 mb-4">
+                            <i class="fa fa-group"></i>
+                            <h6 class=" font-weight-bold"> {{ object.followers.count }} دنبال کننده </h6>
+                        </div>
 
                         </div>
 
