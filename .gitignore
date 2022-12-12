@@ -1,4 +1,5 @@
 *.sage.py
+.env
 
 # Environments
 .env
